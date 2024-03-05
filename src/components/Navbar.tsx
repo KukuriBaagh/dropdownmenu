@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { Children } from 'react';
+import React from 'react';
 import logo from '@/assets/images/logo.svg';
 import arrorDown from '@/assets/images/icon-arrow-down.svg';
 import todoIcon from '@/assets/images/icon-todo.svg';
@@ -15,7 +15,7 @@ type NavItem = {
   iconImage?: string;
 };
 
-const navItems: NavItem = [
+const navItems = [
   {
     label: 'Features',
     link: '#',
@@ -27,17 +27,17 @@ const navItems: NavItem = [
       },
       {
         label: 'Calendar',
-        link: '#',
+        link: '/calendar',
         iconImage: calendarIcon,
       },
       {
         label: 'Reminders',
-        link: '#',
+        link: '/reminder',
         iconImage: reminderIcon,
       },
       {
         label: 'Planning',
-        link: '#',
+        link: '/planning',
         iconImage: planningIcon,
       },
     ],
@@ -48,55 +48,25 @@ const navItems: NavItem = [
     children: [
       {
         label: 'History',
-        link: '#',
+        link: '/history',
       },
       {
         label: 'Our Team',
-        link: '#',
+        link: '/team',
       },
       {
         label: 'Blog',
-        link: '#',
-        children: [
-          {
-            label: 'Register',
-            link: '#',
-          },
-          {
-            label: 'New Blog',
-            link: '#',
-          },
-        ],
+        link: '/blog',
       },
     ],
   },
   {
     label: 'Careers',
-    link: '#',
-    children: [
-      {
-        label: 'Office Jobs',
-        link: '#',
-      },
-      {
-        label: 'Remote Jobs',
-        link: '#',
-      },
-    ],
+    link: '/careers',
   },
   {
     label: 'About',
-    link: '#',
-    children: [
-      {
-        label: 'Developer',
-        link: '#',
-      },
-      {
-        label: 'Services',
-        link: '#',
-      },
-    ],
+    link: '/about',
   },
 ];
 
@@ -116,7 +86,7 @@ const Navbar = () => {
               className='relative group px-2 py-3 transition-all'
             >
               <p className='flex cursor-pointer items-center gap-2 text-neutral-400 group-hover:text-black'>
-                <span>{d.label}</span>
+                <span>{d.label ?? ''}</span>
                 {d.children && (
                   <Image
                     className='rotate-180 transition-all group-hover:rotate-0'
@@ -139,7 +109,9 @@ const Navbar = () => {
                         <Image src={ch.iconImage ?? ''} alt='item icon' />
                       )}
                       {/* item */}
-                      <span className='pl-3 whitespace-nowrap'>{ch.label}</span>
+                      <span className='pl-3 whitespace-nowrap'>
+                        {ch.label ?? ''}
+                      </span>
                     </Link>
                   ))}
                 </div>

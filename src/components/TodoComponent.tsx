@@ -11,7 +11,7 @@ type Todos = {
   content: string;
 };
 
-const Todoitems = [
+const Todoitems: Todos = [
   {
     img: coffeeIcon,
     title: 'Morning Code',
